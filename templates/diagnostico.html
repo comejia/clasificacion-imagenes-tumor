@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <nav class="bg-gray-800">
+        <div class="flex sm:px-6 lg:px-8 mx-10 justify-center">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex shrink-0 items-center">
+                        <img class="h-8 w-auto" src="/static/logo.avif" alt="Your Company">
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="/"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Inicio</a>
+                            <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                                aria-current="page">Diagnóstico</a>
+                            <a href="/contacto"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contacto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="justify-center items-center py-20">
+        <h1
+            class="px-64 font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl text-center justify-center">
+            Diagnóstico automático
+        </h1>
+    </div>
+
+    <div class="flex justify-center items-center">
+        <div
+            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-4xl">
+            <img class="object-cover rounded-t-lg h-96 md:w-96 md:rounded-none md:rounded-s-lg"
+                src="./static/diagnostico.webp" alt="">
+            <div class="flex flex-col justify-between p-8">
+                <p class="mb-8 text-xl font-semibold justify-start tracking-tight text-gray-700">Subí una imagen a analizar y obtené el resultado del diagnóstico</p>
+                
+                <form method=POST enctype=multipart/form-data action="/diagnostico">
+                    <input
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                        id="fileInput" name="fileInput" type="file" accept="image/*" required onchange="diagnosticar()" />
+                        <button type="submit" 
+                        class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full px-5 py-2.5 text-center">Diagnosticar</button>
+                </form>
+                <img id="preview" class="mt-4" alt="Vista previa de la imagen" width="200" style="display:none;">
+                <canvas id="canvas" style="display:none;"></canvas>
+
+                {% if analisis != "": %}
+                <div id="alert-3" class="flex items-center p-4 mt-4 text-green-800 rounded-lg bg-green-50" role="alert">
+                    <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ms-3 text-sm font-medium">
+                      {{analisis}}
+                    </div>
+                    <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
+                      <span class="sr-only">Close</span>
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.8.6/dist/tf.min.js"></script>
+    <script src="/static/diagnostico.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+
+</body>
+
+</html>

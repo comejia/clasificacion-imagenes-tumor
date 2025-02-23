@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="bg-gray-800">
+        <div class="flex sm:px-6 lg:px-8 mx-10 justify-center">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex shrink-0 items-center">
+                        <img class="h-8 w-auto"
+                            src="/static/logo.avif"
+                            alt="IFTS 24">
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                                aria-current="page">Inicio</a>
+                            <a href="/diagnostico"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Diagnóstico</a>
+                            <a href="/contacto"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contacto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="justify-center items-center">
+        <div class="justify-center py-20 items-center text-center">
+            <h1
+                class="px-64 font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl text-center justify-center">
+                Detección de cáncer de piel</h1>
+        </div>
+        <div class="flex justify-center items-center">
+            <div
+                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-4xl">
+                <img class="object-cover rounded-t-lg h-96 md:w-96 md:rounded-none md:rounded-s-lg" src="/static/inicio.png"
+                    alt="">
+                <div class="flex flex-col justify-between p-8">
+                    <h5 class="mb-10 text-3xl justify-start font-bold tracking-tight text-gray-900">Diagnóstico mediante
+                        Inteligencia Artificial</h5>
+                    <p class="mb-7 font-normal text-gray-700">Ingresa al sistema y en unos simples pasos vas a obtener
+                        un resultado.</p>
+
+                    {% if logged : %}
+                    <a href="/diagnostico"
+                        id="home-btn"
+                        class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        Diagnosticar
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                    <a href="/logout"
+                        id="home-btn"
+                        class="inline-flex mt-5 items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        Cerrar sesión
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                    {% else %}
+                    <a href="/login"
+                        id="home-btn"
+                        class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        Iniciar sesión
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--script src="/home.js"></!--script-->
+</body>
+
+</html>
